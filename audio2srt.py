@@ -58,6 +58,8 @@ def processLine(line):
 		else:
 			if bits[0][0] != '<' and bits[0][0] != '[':
 				words.append({'text': re.sub('\(.*?\)', '', bits[0]), 'startTime': bits[1], 'endTime': bits[2]})
+	
+	output.flush()
 
 def secondsToTime(sec):
 	sec = float(sec)
@@ -96,7 +98,6 @@ if args.inputwav:
 	proc = subprocess.Popen(sphinxargs, stdout=subprocess.PIPE, universal_newlines=True)
 	for line in proc.stdout:
 		processLine(line)
-	
 elif args.inputtext:
 	for line in fileinput.input(args.inputtext):
 		processLine(line)
