@@ -93,7 +93,7 @@ if args.output and args.output != '-':
 if args.inputwav:
 	sphinxargs = ['pocketsphinx_continuous', '-infile', args.inputwav, '-time', 'yes']
 	sphinxargs.extend(args.args)
-	proc = subprocess.Popen(sphinxargs, stdout=subprocess.PIPE)
+	proc = subprocess.Popen(sphinxargs, stdout=subprocess.PIPE, universal_newlines=True)
 	for line in proc.stdout:
 		processLine(line)
 	
